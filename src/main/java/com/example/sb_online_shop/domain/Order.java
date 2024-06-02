@@ -32,11 +32,10 @@ public class Order {
 
     public Order() {}
 
-    public Order(double total, Customer customer) {
-        this.total = total;
+    public Order( Customer customer) {
         this.customer = customer;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.createdAt = new Date();
+        this.updatedAt = new Date();
     }
 
     public Long getId() {
@@ -44,6 +43,10 @@ public class Order {
     }
 
     public double getTotal() {
+        total = 0.0;
+        for (Item item : items) {
+            total += item.getPrice() * item.getQuantity();
+        }
         return total;
     }
 

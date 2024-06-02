@@ -46,11 +46,6 @@ public class Customer {
         this.fullname = fullname;
         this.city = city;
         this.balance = balance;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public Long getId() {

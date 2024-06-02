@@ -39,10 +39,10 @@ public class DemoApplication implements CommandLineRunner {
         Customer c3 = new Customer("Porky Pig", "Miami", 28000);
         crepository.saveAll(Arrays.asList(c1, c2, c3));
 
-        Order o1 = new Order(100, c1);
-        Order o2 = new Order(300, c1);
-        Order o3 = new Order(200, c2);
-        Order o4 = new Order(140, c3);
+        Order o1 = new Order(c1);
+        Order o2 = new Order(c1);
+        Order o3 = new Order(c2);
+        Order o4 = new Order(c3);
         orepository.saveAll(Arrays.asList(o1, o2, o3, o4));
 
         Product p1 = new Product("Produit 1", "Description du produit 1", "image1.png", 50);
@@ -55,14 +55,18 @@ public class DemoApplication implements CommandLineRunner {
         Item i3 = new Item(4, 80, o3, p3);
         irepository.saveAll(Arrays.asList(i1, i2, i3));
 
-        int i_order = 0;
+        //int i_order = 0;
+
         System.out.println("----- Toutes les commandes ------");
 
-        for (Order o : orepository.findAll()) {
-            i_order++;
-            System.out.print("commande_" + i_order + " \t " + o.getCustomer().getFullname() + "\t " + o.getTotal() + "$");
-            System.out.println(" ");
-        }
+    for (Order o : orepository.findAll()) {
+      	System.out.println("Order: " + o.getId() + ", Customer: " + o.getCustomer().getFullname() + ", Total: " + o.getTotal() + "$");
+
+      for (Item item : o.getItems()) {
+        System.out.println("\tItem: " + item.getProduct().getName() + ", Quantity: " + item.getQuantity() + ", Price: " + item.getPrice());
+      }
+
+    }
         System.out.println("-----             ------");
     }
 }

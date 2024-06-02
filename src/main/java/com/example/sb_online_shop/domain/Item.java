@@ -46,8 +46,6 @@ public class Item {
         this.price = price;
         this.order = order;
         this.product = product;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     // Getters and Setters
