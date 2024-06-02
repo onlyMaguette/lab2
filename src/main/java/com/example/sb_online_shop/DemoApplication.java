@@ -45,9 +45,9 @@ public class DemoApplication implements CommandLineRunner {
         Order o4 = new Order(c3);
         orepository.saveAll(Arrays.asList(o1, o2, o3, o4));
 
-        Product p1 = new Product("Produit 1", "Description du produit 1", "image1.png", 50);
-        Product p2 = new Product("Produit 2", "Description du produit 2", "image2.png", 30);
-        Product p3 = new Product("Produit 3", "Description du produit 3", "image3.png", 20);
+        Product p1 = new Product("Airpods", "Ces Airpods ecoute à plus d'1 km", "Airpods.png", 300);
+        Product p2 = new Product("Sandales", "Avec ces sandales, vous marcherez sans jamais vous fatiguer", "Sandales.png", 30);
+        Product p3 = new Product("Basin", "Basin très riche, bruit de papier", "Basin.png", 20);
         prepository.saveAll(Arrays.asList(p1, p2, p3));
 
         Item i1 = new Item(2, 100, o1, p1);
@@ -57,16 +57,24 @@ public class DemoApplication implements CommandLineRunner {
 
         //int i_order = 0;
 
-        System.out.println("----- Toutes les commandes ------");
+		System.out.println("\t===== Toutes les commandes =====");
 
 		for (Order o : orepository.findAll()) {
-			System.out.println("Order: " + o.getId() + ", Customer: " + o.getCustomer().getFullname() + ", Total: " + o.getTotal() + "$");
-
+			System.out.println("-------------------------------------------------");
+			System.out.println("Order ID      : " + o.getId());
+			System.out.println("Customer Name : " + o.getCustomer().getFullname());
+			System.out.println("Total Amount  : " + o.getTotal() + " $");
+			System.out.println("Order Date    : " + o.getCreatedAt());
+			System.out.println("Items:");
+			
 			for (Item item : o.getItems()) {
-				System.out.println("\tItem: " + item.getProduct().getName() + ", Quantity: " + item.getQuantity() + ", Price: " + item.getPrice());
+				System.out.println("\tProduct Name: " + item.getProduct().getName());
+				System.out.println("\tQuantity    : " + item.getQuantity());
+				System.out.println("\tPrice       : " + item.getPrice() + " $");
+				System.out.println("\t---------------------------------");
 			}
-
-    }
-        System.out.println("-----             ------");
-    }
+		}
+		
+		System.out.println("\t===== Fin des commandes =====");
+	}		
 }
