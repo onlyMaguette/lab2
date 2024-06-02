@@ -1,6 +1,8 @@
 package com.example.sb_online_shop.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,7 +23,7 @@ public class Product {
     private Date createdAt;
     private Date updatedAt;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product", cascade = CascadeType.ALL)
     private List<Item> items;
 
     public Product() {
@@ -41,8 +43,7 @@ public class Product {
         this.description = description;
         this.image = image;
         this.price = price;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+
     }
 
     // Getters and Setters
