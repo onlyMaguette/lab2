@@ -59,14 +59,10 @@ public class DemoApplication implements CommandLineRunner {
         System.out.println("----- Toutes les commandes ------");
 
         for (Order o : orepository.findAll()) {
-			i_order++;
-			System.out.print("commande_" + i_order + " \t " + o.getCustomer().getFullname() + "\t " + o.getTotal() + "$");
-			System.out.println(" ");
-			System.out.println("Orders:");
-			for (Item item : o.getItems()) {
-				System.out.println("    - Order: " + item.getOrder().getId() + ", Product: " + item.getProduct().getName() + ", Quantity: " + item.getQuantity() + ", Price: " + item.getPrice());
-			}
-		}
+            i_order++;
+            System.out.print("commande_" + i_order + " \t " + o.getCustomer().getFullname() + "\t " + o.getTotal() + "$");
+            System.out.println(" ");
+        }
         System.out.println("-----             ------");
     }
 }
